@@ -1,5 +1,5 @@
 public class LinkedList {
-    private class Node {
+    static class Node {
         int data;
         Node next = null;
 
@@ -22,6 +22,17 @@ public class LinkedList {
         for (; last.next != null; last = last.next) ;
 
         last.next = node;
+    }
+    public void insert(Node i) {
+        if (first == null) {
+            first = i;
+            return;
+        }
+        Node last = first;
+
+        for (; last.next != null; last = last.next) ;
+
+        last.next = i;
     }
 
     public void insertFirst(int i) {
@@ -51,6 +62,16 @@ while (current!=null){
     current=next;
         }
 first=previous;
+    }   public void reverseRecursive(Node previous, Node current) {
+if(current==null){
+    first=previous;
+
+    return;
+}
+
+   Node next=current.next;
+    current.next=previous;
+reverseRecursive(current,next);
     }
 
     public void print() {
