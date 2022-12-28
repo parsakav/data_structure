@@ -23,6 +23,7 @@ public class LinkedList {
 
         last.next = node;
     }
+
     public void insert(Node i) {
         if (first == null) {
             first = i;
@@ -52,26 +53,30 @@ public class LinkedList {
     }
 
     public void reverse() {
-Node previous=null;
-Node current=first;
-Node next;
-while (current!=null){
-    next=current.next;
-    current.next=previous;
-    previous=current;
-    current=next;
+        Node previous = null;
+        Node current = first;
+        Node next;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
         }
-first=previous;
-    }   public void reverseRecursive(Node previous, Node current) {
-if(current==null){
-    first=previous;
+        first = previous;
+    }
 
-    return;
-}
+    public void reverseRecursive(Node previous, Node current) {
+        if (first == null) {
+            return;
+        }
+        if (current == null) {
+            first = previous;
 
-   Node next=current.next;
-    current.next=previous;
-reverseRecursive(current,next);
+            return;
+        }
+        Node next = current.next;
+        current.next = previous;
+        reverseRecursive(current, next);
     }
 
     public void print() {
