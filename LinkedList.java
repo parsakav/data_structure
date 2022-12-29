@@ -65,7 +65,7 @@ public class LinkedList {
         first = previous;
     }
 
-    public void reverseRecursive(Node previous, Node current) {
+  /*  public void reverseRecursive(Node previous, Node current) {
         if (first == null) {
             return;
         }
@@ -77,7 +77,19 @@ public class LinkedList {
         Node next = current.next;
         current.next = previous;
         reverseRecursive(current, next);
+    } */
+        public static Node reverseRecursive( Node head) {
+if(head.next==null || head==null){
+    return head;
+}
+
+Node rest = reverseRecursive(head.next);
+
+head.next.next=head.next;
+head.next=null;
+return rest;
     }
+
 
     public void print() {
         if (first == null) {
