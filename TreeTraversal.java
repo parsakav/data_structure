@@ -3,6 +3,7 @@ package main.java;
  * @see <a href="https://github.com/parsakav/data_structure/blob/main/Tree.png">See the picture for easier understanding</a>
  */
 public class TreeTraversal {
+    private static int size;
     public static void inorder(Node root) {
         if (root == null) {
             return;
@@ -35,6 +36,18 @@ public class TreeTraversal {
 
         postOrder(root.getRightSibling());
         System.out.print(root.getData() + "->");
+
+    }
+  public static void countSize(Node root) {
+
+        if (root == null) {
+            return ;
+        }
+        size++;
+        countSize(root.getLeftMostChild());
+        countSize(root.getRightSibling());
+
+
 
     }
 
@@ -106,6 +119,8 @@ public class TreeTraversal {
         System.out.println();
         System.out.println(TreeTraversal.heightNode(root));
         System.out.println();
+        TreeTraversal.countSize(root);
+        System.out.println(size);
     }
 
 }
