@@ -5,9 +5,26 @@ public class InfixToPostfix {
     public static void main(String[] args) {
 
    infixToPostfix("((A * (B + C) ) / D)");
+
     }
 
+    private static boolean balancedParentheses(String exp){
+        Stack<Character> parantheses = new Stack<>();
+        char[] ch =exp.toCharArray();
+        for(int i=0;i<ch.length;i++){
+            if(ch[i]=='(') {
+                parantheses.push(ch[i]);
+            } if(ch[i]==')') {
+                parantheses.pop();
+            }
+        }
+        return parantheses.empty();
+    }
     private static void infixToPostfix(String exp) {
+        if(balancedParentheses(exp)==false){
+            System.out.println("Check your expression");
+            return;
+        }
         Stack<Character> operand = new Stack<>();
         char[] ch =exp.toCharArray();
         for(int i=0;i<ch.length;i++){
