@@ -38,6 +38,16 @@ public class TreeTraversal {
 
     }
 
+    public static int heightNode(Node root){
+        int height=0;
+        Node p = root.getLeftMostChild();
+        while(p!=null){
+            height=Math.max(height,heightNode(p));
+            p=p.rightSibling;
+        }
+        return height+1;
+    }
+
     static class Node {
         private final Node parent;
         private String data;
@@ -92,6 +102,10 @@ public class TreeTraversal {
         TreeTraversal.preorder(root);
         System.out.println();
         TreeTraversal.postOrder(root);
+
+        System.out.println();
+        System.out.println(TreeTraversal.heightNode(root));
+        System.out.println();
     }
 
 }
