@@ -1,0 +1,65 @@
+
+import java.util.Stack;
+
+public class InfixToPostfix {
+    public static void main(String[] args) {
+
+   infixToPostfix("((A * (B + C) ) / D)");
+    }
+
+    private static void infixToPostfix(String exp) {
+        Stack<Character> operand = new Stack<>();
+        char[] ch =exp.toCharArray();
+        for(int i=0;i<ch.length;i++){
+            char e = ch[i];
+           int oe= operand(e);
+           if(e=='('){
+               operand.push(e);
+           }
+          else if(e==')'){
+              char p;
+              while(!operand.empty() &&(p=operand.pop())!='('){
+                  System.out.print(p);
+              }
+           }
+           else if(oe==-1){
+                System.out.print(e);
+            }
+           else {
+               char c;
+               while (!operand.empty() && (c=operand.peek())>0) {
+                   if(c=='('){
+                       break;
+                   }
+                   int opeek = operand(c);
+                   if (opeek <= oe) {
+                       System.out.print(operand.pop());
+                   }
+               }
+               operand.push(e);
+           }
+
+        }
+        while(!operand.empty()){
+            System.out.print(operand.pop());
+        }
+    }
+
+
+    private static int operand(char c){
+        switch (c){
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '(':
+            case ')':
+                return 0;
+            default:
+                return -1;
+        }
+    }
+
+}
