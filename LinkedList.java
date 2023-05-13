@@ -10,7 +10,19 @@ public class LinkedList {
     }
 
     private Node first = null;
+    
+     public int count(){
 
+        int i=0;
+        if(first==null){
+            return i;
+        }
+        for (Node n = first; n.next!=null;n=n.next){
+            i++;
+        }
+        return ++i;
+    }
+    
     public void insert(int i) {
         Node node = new Node(i);
         if (first == null) {
